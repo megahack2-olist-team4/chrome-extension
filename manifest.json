@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "name": "Assitente de compras",
+  "version": "0.0.1",
+  "description": "Auxilia no processo de decisão de compra",
+  "author": "Alex Fabiano Ricioli",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "browser_action": {
+    // "default_title": "Assistente de compras",
+    // "default_popup": "index.html",
+    "default_icon": {
+      "16": "img/icon16.png",
+      "32": "img/icon32.png",
+      "48": "img/icon48.png",
+      "128": "img/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "img/icon16.png",
+    "32": "img/icon32.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "css": ["css/shopping-assistant.css"],
+      "js": ["js/shopping-assistant.js"],
+      "matches": [
+        "https://*.americanas.com.br/produto/*",
+        "https://*.submarino.com.br/produto/*",
+        "https://*.madeiramadeira.com.br/*",
+        "https://*.carrefour.com.br/*",
+        "https://*.zoom.com.br/*",
+        "https://*.mercadolivre.com.br/*"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}
