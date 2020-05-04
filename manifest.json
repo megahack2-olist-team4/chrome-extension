@@ -11,7 +11,7 @@
     "https://*/*"
   ],
   "browser_action": {
-    // "default_title": "Assistente de compras",
+    "default_title": "Assistente de compras",
     // "default_popup": "index.html",
     "default_icon": {
       "16": "img/icon16.png",
@@ -33,14 +33,27 @@
   "content_scripts": [
     {
       "css": ["css/shopping-assistant.css"],
-      "js": ["js/shopping-assistant.js"],
+      "js": [
+        "js/functions/get-ecommerce-key.js",
+        "js/functions/get-html-content.js",
+        "js/functions/get-search-data.js",
+        "js/functions/is-ficha-tecnica.js",
+        "js/functions/not-is-product-page.js",
+
+        "js/shopping-assistant.js"
+      ],
       "matches": [
+        "https://*.mercadolivre.com.br/*",
         "https://*.americanas.com.br/produto/*",
-        "https://*.submarino.com.br/produto/*",
-        "https://*.madeiramadeira.com.br/*",
         "https://*.carrefour.com.br/*",
+        "https://*.madeiramadeira.com.br/*",
         "https://*.zoom.com.br/*",
-        "https://*.mercadolivre.com.br/*"
+        "https://*.submarino.com.br/produto/*",
+        "https://*.amazon.com/*",
+        "https://*.amazon.com.br/*",
+        "https://*.casasbahia.com.br/*",
+        "https://*.extra.com.br/*",
+        "https://*.pontofrio.com.br/*"
       ],
       "run_at": "document_end"
     }
