@@ -22,7 +22,7 @@
   function commonQuestions(message, sender, sendResponse) {
     console.log(message);
     
-    var html = message.included.map((item) => `<div class="questions-item"><p>${item.attributes.description}</p><p>${document.querySelector(item.attributes.answer_xpath).textContent}</p></div>`).join('');
+    var html = message.included.map((item) => document.querySelector(item.attributes.answer_xpath) ? `<div class="questions-item"><p>${item.attributes.description}</p><p>${document.querySelector(item.attributes.answer_xpath).textContent}</p></div>` : '').join('');
     document.querySelector('.questions').innerHTML = html;
     document.querySelector('.content > div:first-child').style.marginLeft = '-119%';
   }
