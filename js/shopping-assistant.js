@@ -148,14 +148,14 @@
   }
 
 
-  
+
 
   // the input field
   var $input = $("input.search-entry"),
     // next button
     // $nextBtn = $("button.nextResult"),
     // the context where to search
-    $content = $(".root-app"),
+    $content = $("#root-app"),
     // jQuery object to save <mark> elements
     $results,
     // the class that will be appended to the current
@@ -191,7 +191,7 @@
     $content.unmark({
       done: function() {
         $content.mark(searchVal, {
-          separateWordSearch: true,
+          separateWordSearch: false,
           done: function() {
             $results = $content.find("mark");
             currentIndex = 0;
