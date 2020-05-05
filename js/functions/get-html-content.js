@@ -48,7 +48,7 @@ function getHtmlContent(search, ecommerceKey) {
     .content > div {
       min-width: 100%;
       margin-right: 48px;
-      transition: maring-right .4s linear;
+      transition: margin-left .4s linear;
     }
     .search {
       position: relative;

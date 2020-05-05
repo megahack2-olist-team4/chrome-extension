@@ -24,7 +24,7 @@
     var html = message.included
       .map((item) =>
         document.querySelector(item.attributes.answer_xpath)
-          ? `<div class="questions-item"><p>${item.attributes.description}</p><p>${
+          ? `<div class="questions-item" data-selector='${item.attributes.answer_xpath}'><p>${item.attributes.description}</p><p>${
               document.querySelector(item.attributes.answer_xpath).textContent
             }</p></div>`
           : ''
@@ -137,6 +137,25 @@
     }
 
     var questions = document.querySelectorAll('.questions-item');
+    for (var i = 0; i < questions.length; i++) {
+      questions[i].addEventListener('click', function(){
+        var element = document.querySelector(this.dataset.selector),
+          elementInfo = element.getBoundingClientRect();
+
+        window.scrollTo(0, elementInfo.top + window.pageYOffset - 50);
+        var cont = 0;
+        var piscar = setInterval(function() {
+          var value = $(element).css('visibility') == 'hidden' ? 'visible' : 'hidden';
+
+          $(element).css('visibility', value);
+          cont++;
+          if (cont > 5) {
+            clearInterval(piscar);
+          }
+        },400);
+      });
+    }
+
     document.querySelector('.search-questions-entry').addEventListener('input', function () {
       for (var i = 0; i < questions.length; i++) {
         questions[i].hidden =
@@ -147,13 +166,18 @@
     });
   }
 
+  // back button
+  document.querySelector('.search-questions-entry').parentElement.querySelector('svg').addEventListener('click', function() {
+    document.querySelector('.content > div:first-child').style.marginLeft = 'initial';
+  });
+
 
 
 
   // the input field
   var $input = $("input.search-entry"),
     // next button
-    // $nextBtn = $("button.nextResult"),
+    $nextBtn = $("button.search-button"),
     // the context where to search
     $content = $("#root-app"),
     // jQuery object to save <mark> elements
@@ -205,17 +229,16 @@
   /**
    * Next and previous search jump to
    */
-  //   $nextBtn.add($prevBtn).on("click", function() {
-  //     if ($results.length) {
-  //       currentIndex += $(this).is($prevBtn) ? -1 : 1;
-  //       if (currentIndex < 0) {
-  //         currentIndex = $results.length - 1;
-  //       }
-  //       if (currentIndex > $results.length - 1) {
-  //         currentIndex = 0;
-  //       }
-  //       jumpTo();
-  //     }
-  //   });
-  // });
+    $nextBtn.on("click", function() {
+      if ($results.length) {
+        currentIndex += 1;
+        if (currentIndex < 0) {
+          currentIndex = $results.length - 1;
+        }
+        if (currentIndex > $results.length - 1) {
+          currentIndex = 0;
+        }
+        jumpTo();
+      }
+    });
 })();
