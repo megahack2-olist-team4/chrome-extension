@@ -34,13 +34,13 @@ function getHtmlContent(search, ecommerceKey) {
     .content {
       position: fixed;
       top: 50%;
-      right: 48px;
+      right: 20px;
       transform: translateY(-50%);
-      width: 292px;
+      width: 314px;
       padding: 16px 24px;
       box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.24);
       border-radius: 8px;
-      z-index: 9999;
+      z-index: 9998;
       background-color: #FFF;
       overflow: hidden;
       display: flex;
@@ -52,11 +52,12 @@ function getHtmlContent(search, ecommerceKey) {
     }
     .search {
       position: relative;
+      display: block;
     }
     .search-icon {
       position: absolute;
       left: 16px;
-      top: -2px;
+      top: calc(50% - 12px);
     }
     .search-entry,
     .search-questions-entry {
@@ -65,7 +66,7 @@ function getHtmlContent(search, ecommerceKey) {
       line-height: 24px;
       letter-spacing: 0.02em;
       color: #40514E;
-      padding: 11px 16px 11px 56px;
+      padding: 11px 56px;
       border: 1px solid transparent;
       box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.24);
       border-radius: 4px;
@@ -73,6 +74,21 @@ function getHtmlContent(search, ecommerceKey) {
     .search-entry:focus,
     .search-questions-entry:focus {
       border: 1px solid #2F89FC;
+    }
+    .search-button {
+      position: absolute;
+      right: 0;
+      top: 2px;
+      z-index: 10;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      background: transparent;
+      border-left: 1px solid #F2F2F2;
+      cursor: pointer;
+    }
+    .search-button:hover {
+      background: #F2F2F2
     }
     .summary,
     .questions {
@@ -88,7 +104,20 @@ function getHtmlContent(search, ecommerceKey) {
       border-bottom: 1px solid #F2F2F2;
     }
     .questions-item {
-      padding: 4px 32px 4px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #F2F2F2;
+      margin-bottom: 8px;
+    }
+    .questions-item p:first-child {
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: bold;
+      color: #2A3237;
+    }
+    .questions-item p:last-child {
+      font-size: 15px;
+      line-height: 18px;
+      color: #40514E;
     }
     .summary-item:last-child {
       border-bottom: 0;
@@ -128,6 +157,11 @@ function getHtmlContent(search, ecommerceKey) {
             <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
           </svg>
           <input type="text" placeholder="Buscar na página..." class="search-entry">
+          <button type="button" class="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="#2F89FC">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
         </label>
         <div class="summary">
           ${Object.keys(search)
@@ -153,9 +187,9 @@ function getHtmlContent(search, ecommerceKey) {
       <div>
         <label class="search">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="#40514E" class="search-icon">
-            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
           </svg>
-          <input type="text" placeholder="Buscar nas perguntas..." class="search-questions-entry">
+          <input type="text" placeholder="Filtrar perguntas" class="search-questions-entry">
         </label>
         <div class="questions"></div>
       </div>
