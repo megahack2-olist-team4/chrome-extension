@@ -34,6 +34,8 @@
     {
       "css": ["css/shopping-assistant.css"],
       "js": [
+        "js/jquery.js",
+        "js/mark.js",
         "js/functions/get-ecommerce-key.js",
         "js/functions/get-html-content.js",
         "js/functions/get-search-data.js",
